@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { DragSource } from 'react-dnd';
 
 import { ItemTypes } from '../cons/Constants';
@@ -64,5 +64,10 @@ class Node extends Component {
     );
   }
 }
+
+Node.propTypes = {
+  connectDragSource: PropTypes.func.isRequired,
+  isDragging: PropTypes.bool.isRequired
+};
 
 export default DragSource(ItemTypes.Node, NodeSource, collect)(Node);
