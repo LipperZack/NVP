@@ -1,0 +1,27 @@
+{
+  "name": "nvp",
+  "version": "1.0.0",
+  "description": "Niubility Visual Programming",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/LipperZack/nvp.git"
+  },
+  "keywords": [
+    "visual",
+    "programming",
+    "react",
+    "flow",
+    "dataflow",
+    "editor"
+  ],
+  "author": "lipperZack",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LipperZack/nvp/issues"
+  },
+  "homepage": "https://github.com/LipperZack/nvp#readme"
+}
