@@ -1,10 +1,34 @@
 import React, { Component } from 'react';
-import './Node.css'
+import { DragSource } from 'react-dnd';
 
-export default class Node extends Component {
+import { ItemTypes } from '../cons/Constants';
+import './Node.css';
+
+const NodeSource = {
+  beginDrag(props) {
+    return {};
+  }
+};
+
+function collect(connect, monitor) {
+  return {
+    connectDragSource: connect.dragSource(),
+    isDragging: monitor.isDragging()
+  };
+}
+
+
+class Node extends Component {
   render() {
-    return (
-      <div className="node-wrap">
+    const { connectDragSource, isDragging } = this.props;
+    return connectDragSource(
+      <div
+        className="node-wrap"
+        style={{
+          opacity: isDragging ? 0.5 : 1,
+          cursor: 'move'
+        }}
+      >
         <div className="node-header">
           <span className="node-head-spec">range</span>
           <span className="node-head-toolbar">_ ⌘ ? x </span>
@@ -40,3 +64,5 @@ export default class Node extends Component {
     );
   }
 }
+
+export default DragSource(ItemTypes.Node, NodeSource, collect)(Node);
