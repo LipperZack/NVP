@@ -1,0 +1,76 @@
+/* head */
+.node-header{
+    background: #3B3F42;
+    color: #FFFFFF;
+    padding: 10px 5px;
+}
+
+.node-head-toolbar{
+    color: #62686D;
+    float: right;
+    margin-right: 5px;
+}
+
+/* connection */
+.node-connection{
+    background: #3B3F42;
+    padding: 5px;
+    display: flex;
+    color: #A3A7AA;
+}
+
+.node-connection-input{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.node-connection-output{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    margin-right: -30px;
+}
+
+/* port */
+.node-connection-input .node-port{
+    margin-left: -5px;
+    margin-right: 5px;
+    background-image: radial-gradient(#4FDDB5, #3C5A57);
+}
+.node-connection-output .node-port{
+    margin-left: 5px;
+    margin-right: -5px;
+    background-image: radial-gradient(#D97098, #7D5869);
+}
+.node-port{
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+}
+
+/* content */
+.node-content{
+    background: #54585C;
+    color: #A3A7AA;
+    padding: 3px 2px 5px 2px;
+}
+
+.node-content-cell {
+    display: flex;
+    padding: 2px;
+}
+
+.node-content-cell label {
+    flex: 1;
+    padding: 0 5px 0 0;
+    text-align: right;
+}
+
+.node-content-cell input {
+    flex: 1;
+    padding: 5px;
+    background: #2E3238;
+    border: none;
+}

@@ -5,8 +5,6 @@ import './index.css';
 
 
 ReactDOM.render(
-  <div>
-    hello NVP
-  </div>,
+  <Node />,
   document.getElementById('root')
 );
