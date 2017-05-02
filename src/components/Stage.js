@@ -38,7 +38,11 @@ class Stage extends Component {
 
     const { connectDropTarget } = this.props;
     return connectDropTarget(
-      <div>
+      <div style={{
+        position: 'relative',
+        width: '100%',
+        height: '100%'
+      }}>
         {nodes}
       </div>
     );

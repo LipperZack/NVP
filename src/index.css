@@ -10,3 +10,7 @@ html,body{
   background: #35383E;
   display: flex;
 }
+
+#root{
+  width: 100%
+}
