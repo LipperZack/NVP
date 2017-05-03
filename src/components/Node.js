@@ -26,7 +26,10 @@ class Node extends Component {
         className="node-wrap"
         style={{
           opacity: isDragging ? 0.5 : 1,
-          cursor: 'move'
+          cursor: 'move',
+          position: 'absolute',
+          left: this.props.x,
+          top: this.props.y
         }}
       >
         <div className="node-header">
@@ -67,7 +70,9 @@ class Node extends Component {
 
 Node.propTypes = {
   connectDragSource: PropTypes.func.isRequired,
-  isDragging: PropTypes.bool.isRequired
+  isDragging: PropTypes.bool.isRequired,
+  x: PropTypes.number.isRequired,
+  y: PropTypes.number.isRequired
 };
 
 export default DragSource(ItemTypes.Node, NodeSource, collect)(Node);

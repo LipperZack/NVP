@@ -21,11 +21,25 @@ function collect(connect, monitor) {
 }
 
 class Stage extends Component {
+  renderNode(key, x, y) {
+    return (
+      <Node
+        key={key}
+        x={x}
+        y={y}
+      />
+    );
+  }
+
   render() {
+    const nodes = [];
+    nodes.push(this.renderNode(1,100,200));
+    nodes.push(this.renderNode(2,300,400));
+
     const { connectDropTarget } = this.props;
     return connectDropTarget(
       <div>
-        <Node />
+        {nodes}
       </div>
     );
   }
