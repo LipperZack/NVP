@@ -7,9 +7,15 @@ import { ItemTypes } from '../cons/Constants';
 import Node from './Node';
 
 const stageTarget = {
-  drop(props) {
+  drop(props, monitor, component) {
+    const item = monitor.getItem();
+    const delta = monitor.getDifferenceFromInitialOffset();
+    const left = Math.round(item.x + delta.x);
+    const top = Math.round(item.y + delta.y);
+
     const Console = console;
-    Console.log(props.x, props.y);
+    Console.log(item.id, item, delta);
+    // component.moveNode(item.id, left, top);
   }
 };
 
@@ -36,7 +42,7 @@ class Stage extends Component {
     nodes.push(this.renderNode(1,100,200));
     nodes.push(this.renderNode(2,300,400));
 
-    const { connectDropTarget } = this.props;
+    const { x, y, connectDropTarget, isOver } = this.props;
     return connectDropTarget(
       <div style={{
         position: 'relative',
@@ -44,12 +50,27 @@ class Stage extends Component {
         height: '100%'
       }}>
         {nodes}
+        {isOver &&
+        <div style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          height: '100%',
+          width: '100%',
+          zIndex: 1,
+          opacity: 0.5,
+          backgroundColor: 'yellow'
+        }} />
+        }
       </div>
     );
   }
 }
 
 Stage.propTypes = {
+  x: PropTypes.number.isRequired,
+  y: PropTypes.number.isRequired,
+  isOver: PropTypes.bool.isRequired,
   connectDropTarget: PropTypes.func.isRequired
 };
 
