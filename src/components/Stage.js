@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { DragDropContext, DropTarget } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 import _ from 'lodash';
+import { connect } from 'react-redux';
 import { ItemTypes } from '../cons/Constants';
 
 import Node from './Node';
@@ -27,22 +28,24 @@ function collect(connect, monitor) {
 }
 
 class Stage extends Component {
-  renderNode(key, x, y) {
+  renderNode(node) {
     return (
       <Node
-        key={key}
-        x={x}
-        y={y}
+        key={node.id}
+        id={node.id}
+        x={node.x}
+        y={node.y}
       />
     );
   }
 
   render() {
     const nodes = [];
-    nodes.push(this.renderNode(1,100,200));
-    nodes.push(this.renderNode(2,300,400));
+    this.props.nodes.forEach((node) => {
+      nodes.push(this.renderNode(node));
+    });
 
-    const { x, y, connectDropTarget, isOver } = this.props;
+    const { connectDropTarget, isOver } = this.props;
     return connectDropTarget(
       <div style={{
         position: 'relative',
@@ -68,10 +71,15 @@ class Stage extends Component {
 }
 
 Stage.propTypes = {
-  x: PropTypes.number.isRequired,
-  y: PropTypes.number.isRequired,
+  nodes: PropTypes.arrayOf(PropTypes.object),
   isOver: PropTypes.bool.isRequired,
   connectDropTarget: PropTypes.func.isRequired
 };
 
-export default _.flow((DropTarget(ItemTypes.Node, stageTarget, collect)), DragDropContext(HTML5Backend))(Stage);
+function mapStateToProps(state, ownProps) {
+  return {
+    nodes: state.nodes
+  };
+}
+
+export default _.flow((DropTarget(ItemTypes.Node, stageTarget, collect)), DragDropContext(HTML5Backend))(connect(mapStateToProps)(Stage));
