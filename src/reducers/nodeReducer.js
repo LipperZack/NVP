@@ -1,6 +1,7 @@
 import * as types from '../actions/actionTypes';
+import initialState from './initialState';
 
-export default function nodeReducer(state = [], action) {
+export default function nodeReducer(state = initialState.nodes, action) {
   switch (action.type) {
     case types.NODE_CREATE:
       return [...state,
