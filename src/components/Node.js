@@ -2,6 +2,8 @@ import React, { Component, PropTypes } from 'react';
 import { DragSource } from 'react-dnd';
 
 import { ItemTypes } from '../cons/Constants';
+import NodeInput from './NodeInput';
+import NodeOutput from './NodeOutput';
 import './Node.css';
 
 const NodeSource = {
@@ -38,15 +40,16 @@ class Node extends Component {
         </div>
         <div className="node-connection">
           <div className="node-connection-input">
-            <label><div className="node-port" />a: Array</label>
-            <label><div className="node-port" />b: Array</label>
-            <label><div className="node-port" />c: Array</label>
+            <NodeInput name="a" type="Array"/>
+            <NodeInput name="b" type="Array"/>
+            <NodeInput name="c" type="String"/>
           </div>
           <div className="node-connection-output">
-            <label>result: Array<div className="node-port" /></label>
-            <label>result: Array<div className="node-port" /></label>
-            <label>result: Array<div className="node-port" /></label>
-            <label>result: Array<div className="node-port" /></label>
+            <NodeOutput name="result" type="String"/>
+            <NodeOutput name="result" type="Array"/>
+            <NodeOutput name="result" type="Array"/>
+            <NodeOutput name="result" type="Array"/>
+            <NodeOutput name="result" type="Array"/>
           </div>
         </div>
         <div className="node-content">

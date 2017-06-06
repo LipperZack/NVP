@@ -1,3 +1,5 @@
 export const ItemTypes = {
-  Node: 'node'
+  Node: 'node',
+  NodeInput: 'nodeInput',
+  NodeOutput: 'nodeOutput'
 };
