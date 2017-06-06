@@ -3,8 +3,9 @@ import { DragDropContext, DropTarget } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 import _ from 'lodash';
 import { connect } from 'react-redux';
-import { ItemTypes } from '../cons/Constants';
 
+import { ItemTypes } from '../cons/Constants';
+import * as nodeActions from '../actions/nodeActions';
 import Node from './Node';
 
 const stageTarget = {
@@ -14,9 +15,7 @@ const stageTarget = {
     const left = Math.round(item.x + delta.x);
     const top = Math.round(item.y + delta.y);
 
-    const Console = console;
-    Console.log(item.id, item, delta);
-    // component.moveNode(item.id, left, top);
+    component.moveNode(item.id, left, top);
   }
 };
 
@@ -37,6 +36,14 @@ class Stage extends Component {
         y={node.y}
       />
     );
+  }
+
+  moveNode(id, left, top) {
+    this.props.dispatch(nodeActions.nodeUpdate({
+      id,
+      x: left,
+      y: top
+    }));
   }
 
   render() {
@@ -71,6 +78,7 @@ class Stage extends Component {
 }
 
 Stage.propTypes = {
+  dispatch: PropTypes.func,
   nodes: PropTypes.arrayOf(PropTypes.object),
   isOver: PropTypes.bool.isRequired,
   connectDropTarget: PropTypes.func.isRequired
@@ -82,4 +90,4 @@ function mapStateToProps(state, ownProps) {
   };
 }
 
-export default _.flow((DropTarget(ItemTypes.Node, stageTarget, collect)), DragDropContext(HTML5Backend))(connect(mapStateToProps)(Stage));
+export default _.flow((DropTarget(ItemTypes.Node, stageTarget, collect)), DragDropContext(HTML5Backend), connect(mapStateToProps))((Stage));

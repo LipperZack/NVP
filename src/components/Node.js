@@ -6,7 +6,7 @@ import './Node.css';
 
 const NodeSource = {
   beginDrag(props) {
-    return {};
+    return props;
   }
 };
 
