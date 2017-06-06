@@ -25,7 +25,7 @@ class Node extends Component {
       <div
         className="node-wrap"
         style={{
-          opacity: isDragging ? 0.5 : 1,
+          opacity: isDragging ? 0 : 1,
           cursor: 'move',
           position: 'absolute',
           left: this.props.x,
