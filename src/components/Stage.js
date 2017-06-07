@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import { ItemTypes } from '../cons/Constants';
 import * as nodeActions from '../actions/nodeActions';
 import Node from './Node';
+import NodeInput from './NodeInput';
 
 const stageTarget = {
   drop(props, monitor, component) {
@@ -60,6 +61,8 @@ class Stage extends Component {
         height: '100%'
       }}>
         {nodes}
+        <NodeInput
+          name="a" type="Array"/>
       </div>
     );
   }

@@ -31,9 +31,10 @@ function collectDrop(connect, monitor) {
 
 class NodeInput extends Component {
   render() {
-    const { connectDragSource, isDragging, name, type } = this.props;
+    const { name, type } = this.props;
     return (
-      <label><div className="node-port" />{name} {type}</label>
+      <div
+        style={{width:200,height:200}}><div className="node-port" />{name} {type}</div>
     );
   }
 }
